@@ -23,8 +23,8 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  #  - assets/background.png
+  assets:
+    - assets/header.png
 
   # See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
   fonts:
