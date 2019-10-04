@@ -49,20 +49,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   getJSONData() async {
     try {
-      var response =
-          await getRates(date: DateTime.now().subtract(Duration(days: 1)));
+      var response = await getCurrentRates();
+      // var response await getRates(date: DateTime.now().subtract(Duration(days: 1)));
+
       if (response.statusCode == 200) {
         // If server returns an OK response, parse the JSON.
         var decoded = json.decode(response.body);
-        var rates = Map<String, dynamic>.from(decoded['rates']);
+        var rates = Map<String, dynamic>.from(decoded['Valute']);
 
         setState(() {
           rateList = rates.keys.toList().map((key) {
             return Rate(
                 code: key,
-                value: rates['key'],
-                date: decoded['date'],
-                name: key);
+                value: rates[key]['Previous'] / rates[key]['Nominal'],
+                date: decoded['Date'],
+                name: rates[key]['Name'],
+                previous: rates[key]['Value'] / rates[key]['Nominal']);
           }).toList();
         });
       } else {
