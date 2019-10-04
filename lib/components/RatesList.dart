@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
+import 'package:rates_app/models/rate.dart';
 
 class RatesList extends StatelessWidget {
-  final List<dynamic> list;
+  final List<Rate> list;
 
   RatesList({this.list});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         padding: const EdgeInsets.fromLTRB(0, 150, 0, 0),
-        itemCount: list.length,
+        itemCount: list == null ? 0 : list.length,
         itemBuilder: (BuildContext context, int index) {
           return ClipRect(
             child: new BackdropFilter(
@@ -23,7 +24,7 @@ class RatesList extends StatelessWidget {
                 ),
                 child: new Center(
                   child: new Text(
-                    'Entry ${list[index]}',
+                    'Entry ${list[index].code}',
                     style: TextStyle(
                       color: Color(0xfff8ffff),
                       fontSize: 20,
