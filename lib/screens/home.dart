@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:rates_app/components/RatesList.dart';
+import 'package:rates_app/components/rates_list.dart';
 import 'package:rates_app/api/api.dart';
 import 'package:rates_app/models/rate.dart';
 
@@ -16,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: FractionallySizedBox(
@@ -50,23 +49,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   getJSONData() async {
     try {
-      var response = await getRates(date: DateTime.now().subtract(Duration(days: 1)));
+      var response =
+          await getRates(date: DateTime.now().subtract(Duration(days: 1)));
       if (response.statusCode == 200) {
-          // If server returns an OK response, parse the JSON.
-          // var user = User.fromJson(json.decode(response.body));
-          var decoded = json.decode(response.body);
-          var rates = Map<String, dynamic>.from(decoded['rates']);
-          print(rates);
-          setState(() {
-            rateList = rates.keys.toList().map((key) {
-            return Rate(code: key, value: rates['key'], date: decoded['date'], name: key);
-          }).toList();
-          });
+        // If server returns an OK response, parse the JSON.
+        var decoded = json.decode(response.body);
+        var rates = Map<String, dynamic>.from(decoded['rates']);
 
-        } else {
-          var decoded = json.decode(response.body);
-          throw Exception(decoded['message']);
-        }
+        setState(() {
+          rateList = rates.keys.toList().map((key) {
+            return Rate(
+                code: key,
+                value: rates['key'],
+                date: decoded['date'],
+                name: key);
+          }).toList();
+        });
+      } else {
+        var decoded = json.decode(response.body);
+        throw Exception(decoded['message']);
+      }
     } catch (e) {
       showDialog(
           context: context,
