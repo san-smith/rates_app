@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:rates_app/components/rates_list.dart';
 import 'package:rates_app/api/api.dart';
 import 'package:rates_app/models/rate.dart';
+import 'package:rates_app/consts.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -16,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var date = DateTime.now();
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: FractionallySizedBox(
@@ -33,6 +35,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage('assets/header.png'),
                     fit: BoxFit.cover,
                   ),
+                ),
+                child: Stack(
+                  children: <Widget>[
+                    Positioned(
+                      left: 30,
+                      child: Text(
+                        '${date.day}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 120,
+                          color: Color(0xffffffff),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      left: 110,
+                      top: 50,
+                      child: Text(
+                        '${MONTHS[date.month]}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 60,
+                          color: Color(0xffffffff),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
