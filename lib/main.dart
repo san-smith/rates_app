@@ -17,6 +17,8 @@ import 'package:flutter/foundation.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rates_app/screens/home.dart';
+import 'package:provider/provider.dart';
+import 'package:rates_app/models/provider.dart';
 
 void main() {
   // See https://github.com/flutter/flutter/wiki/Desktop-shells#target-platform-override
@@ -28,17 +30,18 @@ void main() {
 class RatesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        backgroundColor: Color(0xff1d2237),
-        primarySwatch: Colors.blue,
-        // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
-        fontFamily: 'Roboto',
+    return ChangeNotifierProvider(
+      builder: (context) => RateProvider(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          backgroundColor: Color(0xff1d2237),
+          primarySwatch: Colors.blue,
+          // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
+          fontFamily: 'Roboto',
+        ),
+        home: HomeScreen(),
       ),
-      home: HomeScreen(),
     );
   }
 }
-
-

@@ -4,6 +4,8 @@ import 'package:rates_app/models/rate.dart';
 import 'package:intl/intl.dart';
 import 'package:rates_app/screens/detail.dart';
 import 'package:rates_app/components/scale_route.dart';
+import 'package:rates_app/models/provider.dart';
+import 'package:provider/provider.dart';
 
 var formatter = DateFormat('dd.MM.yyyy');
 
@@ -15,7 +17,7 @@ class RateItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlatButton(
-      onPressed: () => goToDetail(context),
+      onPressed: () => goToDetail(context, item),
       child: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
@@ -129,7 +131,8 @@ class RateItem extends StatelessWidget {
     );
   }
 
-  goToDetail(BuildContext context) {
+  goToDetail(BuildContext context, Rate rate) {
+    Provider.of<RateProvider>(context).setCurrentRate(rate);
     Navigator.of(context).push<void>(ScaleRoute(page: DetailScreen()));
   }
 }

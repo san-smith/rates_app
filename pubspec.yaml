@@ -17,6 +17,7 @@ dependencies:
   intl: 0.16.0
 
   cupertino_icons: ^0.1.0
+  provider: ^3.0.0
 
 dev_dependencies:
   flutter_test:
