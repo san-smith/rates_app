@@ -15,7 +15,6 @@
 import 'package:flutter/foundation.dart'
     show debugDefaultTargetPlatformOverride;
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:rates_app/screens/home.dart';
 import 'package:provider/provider.dart';
 import 'package:rates_app/models/provider.dart';

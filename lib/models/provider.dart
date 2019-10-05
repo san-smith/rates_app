@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:rates_app/models/rate.dart';
 
 class RateProvider extends ChangeNotifier {
