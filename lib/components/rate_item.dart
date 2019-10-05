@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:rates_app/models/rate.dart';
 import 'package:intl/intl.dart';
+import 'package:rates_app/screens/detail.dart';
+import 'package:rates_app/components/scale_route.dart';
 
 var formatter = DateFormat('dd.MM.yyyy');
 
@@ -12,23 +14,26 @@ class RateItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRect(
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Container(
-          height: 80,
-          margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-            color: Color(0xaa272e47).withOpacity(0.5),
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-          ),
-          child: Row(
-            children: <Widget>[
-              left(),
-              center(),
-              right(),
-            ],
+    return FlatButton(
+      onPressed: () => goToDetail(context),
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+          child: Container(
+            height: 80,
+            margin: EdgeInsets.symmetric(vertical: 5),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+              color: Color(0xaa272e47).withOpacity(0.5),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            child: Row(
+              children: <Widget>[
+                left(),
+                center(),
+                right(),
+              ],
+            ),
           ),
         ),
       ),
@@ -75,12 +80,14 @@ class RateItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Text('${item.value.toStringAsFixed(2)}',
-            style: TextStyle(
-              color: Color(0xffffffff),
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),),
+            Text(
+              '${item.value.toStringAsFixed(2)}',
+              style: TextStyle(
+                color: Color(0xffffffff),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ],
         ),
       ),
@@ -120,5 +127,9 @@ class RateItem extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  goToDetail(BuildContext context) {
+    Navigator.of(context).push<void>(ScaleRoute(page: DetailScreen()));
   }
 }
