@@ -36,7 +36,8 @@ class RatesApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           backgroundColor: Color(0xff1d2237),
-          primarySwatch: Colors.blue,
+          primaryColor: Color(0xff23cc9c),
+          accentColor: Color(0xfff26560),
           // See https://github.com/flutter/flutter/wiki/Desktop-shells#fonts
           fontFamily: 'Roboto',
         ),

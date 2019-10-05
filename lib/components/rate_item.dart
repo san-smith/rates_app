@@ -33,7 +33,7 @@ class RateItem extends StatelessWidget {
               children: <Widget>[
                 left(),
                 center(),
-                right(),
+                right(context),
               ],
             ),
           ),
@@ -96,7 +96,7 @@ class RateItem extends StatelessWidget {
     );
   }
 
-  right() {
+  right(BuildContext context) {
     var diff = item.value - item.previous;
     var percent = (item.value / item.previous - 1) * 100;
     return Container(
@@ -104,7 +104,7 @@ class RateItem extends StatelessWidget {
       width: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(5)),
-        color: Color(diff >= 0 ? 0xff23cc9c : 0xfff26560),
+        color: diff >= 0 ? Theme.of(context).primaryColor : Theme.of(context).accentColor,
       ),
       margin: EdgeInsets.only(left: 10),
       child: Column(

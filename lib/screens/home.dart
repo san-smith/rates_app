@@ -4,6 +4,7 @@ import 'package:rates_app/components/rates_list.dart';
 import 'package:rates_app/api/api.dart';
 import 'package:rates_app/models/rate.dart';
 import 'package:rates_app/consts.dart';
+import 'package:rates_app/components/header_image.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -24,45 +25,34 @@ class _HomeScreenState extends State<HomeScreen> {
         heightFactor: 1,
         child: Stack(
           children: <Widget>[
-            Positioned(
-              left: 0,
-              right: 0,
-              top: 0,
-              child: Container(
-                height: 300,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/header.png'),
-                    fit: BoxFit.cover,
+            HeaderImage(
+              height: 300,
+              child: Stack(
+                children: <Widget>[
+                  Positioned(
+                    left: 30,
+                    child: Text(
+                      '${date.day}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 120,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
                   ),
-                ),
-                child: Stack(
-                  children: <Widget>[
-                    Positioned(
-                      left: 30,
-                      child: Text(
-                        '${date.day}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 120,
-                          color: Color(0xffffffff),
-                        ),
+                  Positioned(
+                    left: 110,
+                    top: 50,
+                    child: Text(
+                      '${MONTHS[date.month]}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 60,
+                        color: Color(0xffffffff),
                       ),
                     ),
-                    Positioned(
-                      left: 110,
-                      top: 50,
-                      child: Text(
-                        '${MONTHS[date.month]}',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 60,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             Positioned.fill(
